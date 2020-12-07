@@ -1,4 +1,16 @@
-﻿window.pageMapVehicleTracking = function () {
+﻿const API_PATH = "http://localhost:8080/api/vehicle"
+
+const getDirection = () => {
+    let url = API_PATH + "/getDirection/";
+
+    return axios.get(url, {
+        headers: {
+            "Access-Control-Allow-Origin": "*"
+        }
+    });
+}
+
+window.pageMapVehicleTracking = function () {
     var article = $("article");
     var divMapId = article.find("#mapId");
 
@@ -124,6 +136,7 @@
         this.viewTracking = function (tracking, focus) {};
         this.clearTracking = function (tracking) {};
     };
+
     var TableView = function () {
         $.extend(this, new View());
         this.container = null;
@@ -137,7 +150,7 @@
         };
         this.onAddVehicleTracking = function () {
             var $this = this;
-            console.log(this.container);
+            //            console.log(this.container);
             this.container.find(".area-tracking").remove();
             var area = $("<div class='area-tracking box' style='position:absolute; width: 190px; bottom: 2px; left: 2px; z-index:999; padding: 1px'>");
             area.append(article.find("[data-form=template]").html());
@@ -163,8 +176,8 @@
             var $this = this;
             var row = $("<ul>");
             row.css("cursor", "pointer");
-            row.append(`<li class='col0'>${tracking.Time}</li>`);
-            row.append(`<li class='col3'>${tracking.Lat}, ${tracking.Lng}</li>`);
+            //            row.append(`<li class='col0'>${tracking.Time}</li>`);
+            row.append(`<li class='col3'>${tracking.lat}, ${tracking.lng}</li>`);
             row.click(function () {
                 $this.vehicleTracking.gotoIndex(tracking.index);
             });
@@ -180,6 +193,7 @@
             }
         };
     };
+
     var MapView = function () {
         $.extend(this, new View());
         this.map = null;
@@ -208,11 +222,11 @@
             });
         };
         this.initTracking = function (tracking, previousTracking) {
-            tracking.latLng = L.latLng(tracking.Lat, tracking.Lng);
+            tracking.latLng = L.latLng(tracking.lat, tracking.lng);
             if (previousTracking == null) tracking.direction = 0;
             else {
-                tracking.direction = getDir(previousTracking.direction, previousTracking.Lng, previousTracking.Lat, tracking.Lng, tracking.Lat);
-                tracking.polyline = L.polyline([[tracking.Lat, tracking.Lng], [previousTracking.Lat, previousTracking.Lng]], {
+                tracking.direction = getDir(previousTracking.direction, previousTracking.lng, previousTracking.lat, tracking.lng, tracking.lat);
+                tracking.polyline = L.polyline([[tracking.lat, tracking.lng], [previousTracking.lat, previousTracking.lng]], {
                     color: "#dc3545"
                 });
                 tracking.markerDirection = L.marker([]);
@@ -311,7 +325,7 @@
 
     // Map view tracking
     var mapView = new MapView();
-    mapView.map = L.map(divMapId[0]).setView([20.922699, 105.833162], 15);
+    mapView.map = L.map(divMapId[0]).setView([20.99475, 105.80718], 15);
     var myUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
     L.tileLayer(myUrl, {
         maxZoom: 40,
@@ -321,8 +335,21 @@
         zoomOffset: -1
     }).addTo(mapView.map);
 
+    getDirection().then(res => {
+        console.log(res.data);
+    });
+
     vehicleTracking.addView(mapView);
     vehicleTracking.loadTrackings(trackings);
+
+    mapView.map.on('click', function (e) {
+        let newTracking = {};
+        newTracking = e.latlng;
+        if (event.target.classList.contains("leaflet-container")) {
+            trackings.push(newTracking);
+            vehicleTracking.loadTrackings(trackings);
+        }
+    })
 }
 
 function Core() {}
