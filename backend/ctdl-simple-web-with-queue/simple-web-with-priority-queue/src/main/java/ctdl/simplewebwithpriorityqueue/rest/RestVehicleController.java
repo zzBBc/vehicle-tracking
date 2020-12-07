@@ -20,7 +20,7 @@ import ctdl.simplewebwithpriorityqueue.service.Check;
 import ctdl.simplewebwithpriorityqueue.service.Sort;
 
 @CrossOrigin(origins = {
-		"http://localhost:3000", "http://localhost:4200", "http://localhost:8125", "http://192.168.1.180:8081"
+		"http://localhost:3000", "http://localhost:4200", "http://localhost:8125", "http://192.168.1.179:8081"
 })
 @RestController
 @RequestMapping("/api/vehicle/")
@@ -31,7 +31,7 @@ public class RestVehicleController {
 	@Autowired
 	Check check;
 
-	@GetMapping("/getDirection")
+	@GetMapping("/getDirection/")
 	public ResponseEntity<List<EdgeDto>> getDirection() {
 		List<EdgeDto> direction = new ArrayList<>();
 		Constants constants = new Constants();
