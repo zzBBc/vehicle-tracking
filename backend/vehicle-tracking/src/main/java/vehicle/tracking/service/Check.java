@@ -5,20 +5,20 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import vehicle.tracking.dto.EdgeDto;
-import vehicle.tracking.dto.VehicleTrackingDto;
+import vehicle.tracking.dto.VertexTrackingDto;
 
 @Service
 public class Check {
-	public boolean checkDuplicateStart(VehicleTrackingDto verticesStart, List<EdgeDto> direction) {
+	public boolean checkDuplicateStartOrFinish(EdgeDto edge, List<EdgeDto> direction) {
 		for(EdgeDto tempEdge: direction)
-			if(tempEdge.getStart().equals(verticesStart))
+			if(tempEdge.getStart().equals(edge.getStart()) || tempEdge.getFinish().equals(edge.getFinish()))
 				return true;
 		return false;
 	}
 
 	public boolean checkCycle(EdgeDto edge, List<EdgeDto> direction, int verticesSize) {
-		VehicleTrackingDto verticesStart = edge.getStart();
-		VehicleTrackingDto verticesFinish = edge.getFinish();
+		VertexTrackingDto verticesStart = edge.getStart();
+		VertexTrackingDto verticesFinish = edge.getFinish();
 
 		boolean scanEdge = false;
 		while(scanEdge == false)

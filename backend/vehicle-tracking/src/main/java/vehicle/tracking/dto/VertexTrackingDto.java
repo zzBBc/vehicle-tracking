@@ -1,26 +1,26 @@
 package vehicle.tracking.dto;
 
-public class VehicleTrackingDto {
+public class VertexTrackingDto {
 
 	private String positionName;
 
-	// latitude
+	// latitude (vĩ độ)
 	private double lat;
 
-	// longitude
+	// longitude (kinh độ)
 	private double lng;
 
-	public VehicleTrackingDto() {
+	public VertexTrackingDto() {
 
 	}
 
-	public VehicleTrackingDto(double lat, double lng, String positionName) {
+	public VertexTrackingDto(double lat, double lng, String positionName) {
 		this.lat = lat;
 		this.lng = lng;
 		this.positionName = positionName;
 	}
 
-	public VehicleTrackingDto(VehicleTrackingDto dto) {
+	public VertexTrackingDto(VertexTrackingDto dto) {
 		lat = dto.getLat();
 		lng = dto.getLng();
 	}

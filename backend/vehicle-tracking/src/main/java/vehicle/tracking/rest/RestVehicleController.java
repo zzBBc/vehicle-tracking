@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import vehicle.tracking.Constants;
 import vehicle.tracking.dto.EdgeDto;
-import vehicle.tracking.dto.VehicleTrackingDto;
+import vehicle.tracking.dto.VertexTrackingDto;
 import vehicle.tracking.service.Check;
 import vehicle.tracking.service.Sort;
 
@@ -36,7 +36,7 @@ public class RestVehicleController {
 		Constants constants = new Constants();
 
 		// Create list vertices
-		List<VehicleTrackingDto> vertices = constants.getVertices();
+		List<VertexTrackingDto> vertices = constants.getVertices();
 		// Create edges from vertices
 		List<EdgeDto> edges = constants.setEdgesFromVertices(vertices);
 
@@ -51,7 +51,7 @@ public class RestVehicleController {
 				continue;
 			}
 
-			if(!check.checkDuplicateStart(edge.getStart(), direction)
+			if(!check.checkDuplicateStartOrFinish(edge, direction)
 					&& !check.checkCycle(edge, direction, vertices.size())){
 				direction.add(edge);
 				// Sort direction by cycle

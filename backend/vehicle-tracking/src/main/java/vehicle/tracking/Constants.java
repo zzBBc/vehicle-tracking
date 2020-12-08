@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vehicle.tracking.dto.EdgeDto;
-import vehicle.tracking.dto.VehicleTrackingDto;
+import vehicle.tracking.dto.VertexTrackingDto;
 
 public final class Constants {
 	// HUS
-	VehicleTrackingDto tracking0 = new VehicleTrackingDto(20.9953795115114, 105.80831766128541, "HUS");
+	VertexTrackingDto tracking0 = new VertexTrackingDto(20.9953795115114, 105.80831766128541, "HUS");
 
 	// 149 Nguyen Tuan: 20.998649876448347, 105.80297201871873
-	VehicleTrackingDto tracking1 = new VehicleTrackingDto(20.998649876448347, 105.80297201871873, "149 Nguyễn Tuân");
+	VertexTrackingDto tracking1 = new VertexTrackingDto(20.998649876448347, 105.80297201871873, "149 Nguyễn Tuân");
 
 	// Cho Nhan Chinh: 20.99835439465859, 105.80927789211273
-	VehicleTrackingDto tracking2 = new VehicleTrackingDto(20.99835439465859, 105.80927789211273, "Chợ Nhân Chính");
+	VertexTrackingDto tracking2 = new VertexTrackingDto(20.99835439465859, 105.80927789211273, "Chợ Nhân Chính");
 
 	// Royal City: 21.001128895542955, 105.81684172153474
-	VehicleTrackingDto tracking3 = new VehicleTrackingDto(21.001128895542955, 105.81684172153474, "Royal City");
+	VertexTrackingDto tracking3 = new VertexTrackingDto(21.001128895542955, 105.81684172153474, "Royal City");
 
-	private List<VehicleTrackingDto> vertices = new ArrayList<>();
+	private List<VertexTrackingDto> vertices = new ArrayList<>();
 
 	private List<EdgeDto> edges = new ArrayList<>();
 
@@ -35,29 +35,29 @@ public final class Constants {
 		vertices.add(tracking3);
 	}
 
-	public List<EdgeDto> setEdgesFromVertices(List<VehicleTrackingDto> vertices) {
+	public List<EdgeDto> setEdgesFromVertices(List<VertexTrackingDto> vertices) {
 		List<EdgeDto> edges = new ArrayList<>();
 		// Add edges
-		for(VehicleTrackingDto edgeStart: vertices)
-			for(VehicleTrackingDto edgeFinal: vertices){
-				if(edgeStart == edgeFinal)
+		for(VertexTrackingDto vertexStart: vertices)
+			for(VertexTrackingDto vertexFinal: vertices){
+				if(vertexStart == vertexFinal)
 					continue;
 
-				double c = capacityCalculation(edgeStart, edgeFinal);
+				double c = capacityCalculation(vertexStart, vertexFinal);
 
-				edges.add(new EdgeDto(edgeStart, edgeFinal, c));
+				edges.add(new EdgeDto(vertexStart, vertexFinal, c));
 			}
 		return edges;
 	}
 
-	public double capacityCalculation(VehicleTrackingDto edgeStart, VehicleTrackingDto edgeFinal) {
+	public double capacityCalculation(VertexTrackingDto edgeStart, VertexTrackingDto edgeFinal) {
 		return Math.sqrt(Math.pow(edgeStart.getLat() - edgeFinal.getLat(), 2)
 				+ Math.pow(edgeStart.getLng() - edgeFinal.getLng(), 2));
 	}
 
-	public List<VehicleTrackingDto> getVertices() { return vertices; }
+	public List<VertexTrackingDto> getVertices() { return vertices; }
 
-	public void setVertices(List<VehicleTrackingDto> vertices) { this.vertices = vertices; }
+	public void setVertices(List<VertexTrackingDto> vertices) { this.vertices = vertices; }
 
 	public List<EdgeDto> getEdges() { return edges; }
 
