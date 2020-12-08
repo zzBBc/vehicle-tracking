@@ -1,4 +1,4 @@
-package ctdl.simplewebwithpriorityqueue.dto;
+package vehicle.tracking.dto;
 
 public class EdgeDto {
 	private VehicleTrackingDto start;

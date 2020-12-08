@@ -1,10 +1,10 @@
-package ctdl.simplewebwithpriorityqueue;
+package vehicle.tracking;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ctdl.simplewebwithpriorityqueue.dto.EdgeDto;
-import ctdl.simplewebwithpriorityqueue.dto.VehicleTrackingDto;
+import vehicle.tracking.dto.EdgeDto;
+import vehicle.tracking.dto.VehicleTrackingDto;
 
 public final class Constants {
 	// HUS

@@ -1,4 +1,4 @@
-package ctdl.simplewebwithpriorityqueue.config;
+package vehicle.tracking.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

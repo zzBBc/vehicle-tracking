@@ -1,11 +1,11 @@
-package ctdl.simplewebwithpriorityqueue.service;
+package vehicle.tracking.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import ctdl.simplewebwithpriorityqueue.dto.EdgeDto;
+import vehicle.tracking.dto.EdgeDto;
 
 @Service
 public class Sort {

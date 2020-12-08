@@ -1,4 +1,4 @@
-package ctdl.simplewebwithpriorityqueue.rest;
+package vehicle.tracking.rest;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ctdl.simplewebwithpriorityqueue.Constants;
-import ctdl.simplewebwithpriorityqueue.dto.EdgeDto;
-import ctdl.simplewebwithpriorityqueue.dto.VehicleTrackingDto;
-import ctdl.simplewebwithpriorityqueue.service.Check;
-import ctdl.simplewebwithpriorityqueue.service.Sort;
+import vehicle.tracking.Constants;
+import vehicle.tracking.dto.EdgeDto;
+import vehicle.tracking.dto.VehicleTrackingDto;
+import vehicle.tracking.service.Check;
+import vehicle.tracking.service.Sort;
 
 //@CrossOrigin(origins = {
 //		"http://localhost:3000", "http://localhost:4200", "http://localhost:8125", "http://192.168.1.179:8081"

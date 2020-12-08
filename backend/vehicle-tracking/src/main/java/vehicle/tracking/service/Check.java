@@ -1,11 +1,11 @@
-package ctdl.simplewebwithpriorityqueue.service;
+package vehicle.tracking.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import ctdl.simplewebwithpriorityqueue.dto.EdgeDto;
-import ctdl.simplewebwithpriorityqueue.dto.VehicleTrackingDto;
+import vehicle.tracking.dto.EdgeDto;
+import vehicle.tracking.dto.VehicleTrackingDto;
 
 @Service
 public class Check {
